@@ -1,0 +1,35 @@
+valid = False
+
+while not valid:
+    try:
+      
+        bill_amount, discount_perc, people = input("Enter bill amount, discount percent, and people separated by commas: ").split(",")
+
+        bill_amount = float(bill_amount)
+        discount_perc = float(discount_perc)
+        people = int(people)
+
+        if bill_amount <= 0 or discount_perc <= 0 or people <= 0:
+            raise ValueError
+
+        discount_amount = bill_amount * discount_perc / 100
+        final_amount = bill_amount - discount_amount
+        amount_per_person = final_amount / people
+
+    except ValueError:
+        print(" Invalid input! Enter values such as 1000,10,2")
+
+    except ZeroDivisionError:
+        print("You can't have zero or less people, enter a valid amount of people")
+
+    else:
+      print("========Shopping Discount Summary==============")
+      print(f"Original Bill: {bill_amount}")
+      print(f"Discount Percent: {discount_perc}")
+      print(f"Final Amount: {final_amount}")
+      print("Amount Per Person:",round(amount_per_person,2))
+      print("===============================================")
+
+    finally:
+      print("Discount check completed!")
+      break
